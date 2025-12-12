@@ -1,0 +1,5 @@
+{
+  "name": "MediLens",
+  "description": "An AI-powered medical assistant that interprets medical reports and prescriptions, providing summaries, extracted data, and lifestyle suggestions.",
+  "requestFramePermissions": []
+}
