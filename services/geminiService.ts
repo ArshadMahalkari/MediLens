@@ -1,9 +1,6 @@
 import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { AnalysisResult } from "../types";
 
-// Initialize the client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 const analysisSchema: Schema = {
   type: Type.OBJECT,
   properties: {
@@ -99,6 +96,9 @@ const analysisSchema: Schema = {
 };
 
 export const analyzeMedicalImage = async (base64Image: string, mimeType: string): Promise<AnalysisResult> => {
+  // Initialize the client inside the function to avoid top-level side effects (crashing if process is undefined)
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
   const prompt = `
     You are MediLens, an AI assistant. Analyze the medical document in the image with a calm, educational tone.
 
